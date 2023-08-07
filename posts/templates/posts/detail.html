@@ -1,0 +1,33 @@
+{% extends 'posts/base.html' %}
+
+{% block content %}
+    <section class="mbr-section content4 cid-qvbjfGj2Ze" id="content4-7x" data-rv-view="3584">
+    <div class="container">
+        <div class="media-container-row">
+            <div class="title col-12 col-md-8">
+                <h2 class="align-center pb-3 mbr-fonts-style display-5">{{post.title}}</h2>
+                <h3 class="mbr-section-subtitle align-center mbr-light mbr-fonts-style display-7"><em>{{post.author}}</em></h3>
+            </div>
+        </div>
+    </div>
+</section>
+ {% if post.image %}
+<img src="{{ post.image.url }}"  width="350" height="300" alt="{{post.id}}">
+{% endif %}
+<section class="mbr-section article content1 cid-qvbjomyZfb" id="content1-7y" data-rv-view="3586">
+    <div class="container">
+        <div class="media-container-row">
+            <div class="mbr-text col-12 col-md-8 mbr-fonts-style display-7">{{ post.body }}</div>
+        </div>
+    </div>
+</section>
+{% if user == post.author or user.is_superuser %}
+ <a href="{% url 'update' post.pk %}" >
+            Edit
+          </a>
+<hr>
+ <a href="{% url 'delete' post.pk %}">
+            Delete
+          </a>
+{% endif %}
+{% endblock %}
